@@ -16,7 +16,7 @@ const authTypeDefs = gql `
             password: String!
 
         }
-
+                                
         input SignUpInput{
             username   : String!
             password   : String!
