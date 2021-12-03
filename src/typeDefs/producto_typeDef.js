@@ -1,17 +1,36 @@
 const {gql}= require('apollo-server')
 
 
-const ProductoTypeDefs = {gql} `
+const productoTypeDefs = {gql} `
 
-    type Productos{
-
-
+    type Producto{
+        id:             String!
+        name:           String!
+        description:    String!
+        price:          Float!
+        category:       Stirng!
+        stock:          Int!
 
     }
 
-    type Account{
+    input ProductoInput{
+        id:             String!
+        name:           String!
+        description:    String!
+        price:          Float!
+        category:       Stirng!
+        stock:          Int!
 
-        
     }
 
-`
+    extend type query {
+        producto(): [Product]
+    }
+
+    extend type Mutation{
+        createProducto(producto: ProductoInput!): Producto
+        updateProducto(producto: ProductoInput!): Producto
+        deleteProducto(idProducto: String!): String! 
+    }
+`;
+module.exports = productoTypeDefs;
