@@ -29,8 +29,8 @@ const carritoTypeDefs = gql `
     }
 
     extend type Mutation{
-        createCarrito(Carrito:CarritoInput!): Carrito
-        updateCarrito(Carrito: CarritoUpdate!): Carrito
+        createCarrito(Carrito:CarritoInput!): Carrito!
+        updateCarrito(Carrito: CarritoUpdate!): Carrito!
         deleteCarrito(productId: String!): String!
     }
 
