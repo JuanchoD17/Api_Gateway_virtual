@@ -9,17 +9,14 @@ const usersResolver = {
     },
     Mutation: {
         signUpUser: async(_, { userInput }, { dataSources }) => {
-            const accountInput = {
-                username: userInput.username,
-                balance: userInput.balance,
-                lastChange: (new Date()).toISOString()
-                }
-            await dataSources.accountAPI.createAccount(accountInput);
             const authInput = {
                 username: userInput.username,
                 password: userInput.password,
                 name: userInput.name,
+                last_name: userInput.last_name,
                 email: userInput.email,
+                adress: userInput.adress,
+                cellphone: userInput.cellphone
             }
             return await dataSources.authAPI.createUser(authInput);
         },
