@@ -9,10 +9,10 @@ const productoResolver = {
             return await dataSources.productoAPI.createProducto(producto);
         },
         updateProducto: async(_, {producto,productId }, {dataSources})=>{
-            return await dataSources.productoAPI.UpdateProducto(producto, productId);
+            return await dataSources.productoAPI.opdateProducto(producto, productId);
         },
         deleteProducto: async(_,{productId}, {dataSources})=>{
-            return await dataSources.productoAPI.DeleteProducto(productId);
+            return await dataSources.productoAPI.deleteProducto(productId);
         }
     }
 };

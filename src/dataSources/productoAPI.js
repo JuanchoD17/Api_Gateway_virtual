@@ -30,7 +30,7 @@ class ProductoAPI extends RESTDataSource {
         return await this.post('/carrito',carrito);
     }
 
-    async CarritoById(userId){
+    async carritoById(userId){
         return await this.get(`/carrito/${userId}`);
     }
 
