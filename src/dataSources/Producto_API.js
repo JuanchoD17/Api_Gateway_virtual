@@ -39,10 +39,11 @@ class ProductoAPI extends RESTDataSource {
         return await this.put('/carrito',carrito);
     }
 
-    async deleteCarrito(userId,productId){
-        return await this.delete(`/carrito/${userId}/${productId}`)
+    async deleteCarrito(carrito,userId){
+        carrito = new Object(JSON.parse(JSON).stringify(carrito))
+        return await this.delete(`/carrito/${userId}`,carrito);
     }
-
+                  
 }
 
 module.exports = ProductoAPI;

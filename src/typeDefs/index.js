@@ -1,4 +1,4 @@
-const authTypeDefs     = require('./Auth_typeDef');
+const authTypeDefs     = require('./auth_type_def');
 const productoTypeDefs = require('./producto_typeDef');
 const carritoTypeDefs  = require('./shoppingcart_typeDef');
 

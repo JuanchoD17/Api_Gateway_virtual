@@ -1,6 +1,6 @@
 const carritoResolver = {
     Query: {
-        CarritoById: async (_, {userId}, {dataSource, userIdToken})=>{
+        CarritoByUserId: async (_, {userId}, {dataSource, userIdToken})=>{
             userToken = (await dataSource.Auth_API.getUser(userIdToken)).userId
             if (userToken==userId)
                 return await dataSource.Auth_API.getUser(userId);
@@ -17,10 +17,17 @@ const carritoResolver = {
                 return null;
         }
         ,
-        deleteCarrito: async(_, {userId, productId}, {dataSource, userIdToken})=>{
+        updateCarrito: async(_,{carrito},{dataSource, userIdToken})=>{
+            userToken = (await dataSource.Auth_API.getUser(userIdToken)).userId
+            if (carrito.userId==userToken)
+                return await dataSource.Producto_API.updateUser(carrito)
+            else 
+                return null;
+        },
+        deleteCarrito: async(_, {carrito,userId}, {dataSource, userIdToken})=>{
             userToken = (await dataSource.Auth_API.getUser(userIdToken)).userId
             if (userId==userToken)
-                return await dataSource.Producto_API.deleteCarrito(userId, productId);
+                return await dataSource.Producto_API.deleteCarrito(userId, carrito);
             else
                 return null;
         }

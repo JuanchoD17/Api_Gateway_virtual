@@ -40,7 +40,7 @@ const authTypeDefs = gql `
         }
 
         type Mutation{
-            SignUpUser(UserInput:SignUpInput!): Tokens!
+            signUpUser(UserInput:SignUpInput!): Tokens!
             logIn(credentials:CredentialsInput!): Tokens!
             refreshToken(refresh: String): Access!
         
@@ -48,11 +48,11 @@ const authTypeDefs = gql `
 
         type Query{
 
-            UserDetailById(userId:Int!): UserDetail
+            userDetailById(userId: Int!): UserDetail!
         }
       
 `;
 
-module.exports = authTypeDefs
+module.exports = authTypeDefs;
 
 

@@ -1,7 +1,7 @@
 const {ApolloError} = require ('apollo-server')
 const serverconfig  = require ('../server')
 const fetch         = require ('node-fetch');
-const { Body } = require('apollo-server-env');
+
 
 
 const authentication = async ( {req} ) =>{
@@ -10,8 +10,6 @@ const authentication = async ( {req} ) =>{
     
     if(token == '')
         return{userIdToken: null}
-
-
     else{
         try{
             let requestOptions = {
@@ -20,8 +18,7 @@ const authentication = async ( {req} ) =>{
                 body: JSON.stringify( {token} ), redirect: 'follow'
             };
 
-            let response = await fetch(`${serverconfig.auth_api_url}/verifyToken/`,
-                requestOptions)
+            let response = await fetch(`${serverconfig.auth_api_url}/verifyToken/`,requestOptions)
 
         if (response.status != 200){
 

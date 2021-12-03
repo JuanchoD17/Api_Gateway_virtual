@@ -1,6 +1,6 @@
-const {gql}= require('apollo-server')
+const {gql}= require('apollo-server');
 
-const carritoTypeDefs = gql`
+const carritoTypeDefs = gql `
     type Carrito {
         id          :String!
         userId      :String!
@@ -29,7 +29,7 @@ const carritoTypeDefs = gql`
     }
 
     extend type Mutation{
-        CreateCarrito(Carrito:CarritoInput!): Carrito
+        createCarrito(Carrito:CarritoInput!): Carrito
         updateCarrito(Carrito: CarritoUpdate!): Carrito
         deleteCarrito(productId: String!): String!
     }

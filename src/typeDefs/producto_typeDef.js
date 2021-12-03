@@ -1,14 +1,14 @@
-const {gql}= require('apollo-server')
+const {gql}= require('apollo-server');
 
 
-const productoTypeDefs = {gql} `
+const productoTypeDefs = gql `
 
     type Producto{
         id:             String!
         name:           String!
         description:    String!
         price:          Float!
-        category:       Stirng!
+        category:       String!
         stock:          Int!
 
     }
@@ -18,13 +18,13 @@ const productoTypeDefs = {gql} `
         name:           String!
         description:    String!
         price:          Float!
-        category:       Stirng!
+        category:       String!
         stock:          Int!
 
     }
 
-    extend type query {
-        producto(): [Product]
+    extend type Query {
+        listProducts: [Producto]
     }
 
     extend type Mutation{
