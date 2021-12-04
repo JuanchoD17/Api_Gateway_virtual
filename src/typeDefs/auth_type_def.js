@@ -29,7 +29,7 @@ const authTypeDefs = gql `
 
         type UserDetail{
 
-            id: Int!
+            id         : Int!
             username   : String!
             password   : String!
             name       : String!
