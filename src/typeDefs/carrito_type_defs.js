@@ -25,7 +25,7 @@ const carritoTypeDefs = gql `
     }
 
     extend type Query{
-        CarritoByUserId(userId: String!): [Carrito]
+        carritoByUserId(userId: String!): [Carrito]!
     }
 
     extend type Mutation{

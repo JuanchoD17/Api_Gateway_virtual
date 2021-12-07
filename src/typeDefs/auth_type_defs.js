@@ -26,7 +26,7 @@ const authTypeDefs = gql `
             adress     : String!
             cellphone  : String!
         }
-
+        
         type UserDetail{
 
             id         : Int!
@@ -45,7 +45,7 @@ const authTypeDefs = gql `
             refreshToken(refresh: String): Access!
         
         }
-
+        
         type Query{
 
             userDetailById(userId: Int!): UserDetail!

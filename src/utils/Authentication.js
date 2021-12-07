@@ -24,7 +24,7 @@ const authentication = async ( {req} ) =>{
 
             console.log(response)
 
-            throw new ApolloError(`SECION INACTIVA ${401}`+ response.status, 401)
+            throw new ApolloError(`SESION INACTIVA ${401}`+ response.status, 401)
         }
         return{userIdToken: (await response.JSON()).UserId};
         }

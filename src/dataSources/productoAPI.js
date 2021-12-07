@@ -1,19 +1,19 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
-const serverConfig       = require('../server');
+const serverConfig = require('../server');
 
 class ProductoAPI extends RESTDataSource {
-    constructor(){
+    constructor() {
         super();
-        this.baseUrl = serverConfig.producto_api_url;
+        this.baseURL = serverConfig.producto_api_url;
     }
 
     async createProducto(producto){
         producto = new Object(JSON.parse(JSON.stringify(producto)));
-        return await this.post('/producto',producto);
+        return await this.post(`/producto`,producto);
     }
 
-    async listProducts(){
-        return await this.get('/producto');
+    async listProductos(){
+        return await this.get(`/producto`);
     }
 
     async updateProducto(producto, productId){
@@ -27,7 +27,7 @@ class ProductoAPI extends RESTDataSource {
 
     async createCarrito(carrito){
         carrito = new Object(JSON.parse(JSON.stringify(carrito)));
-        return await this.post('/carrito',carrito);
+        return await this.post(`/carrito`,carrito);
     }
 
     async CarritoById(userId){
@@ -36,7 +36,7 @@ class ProductoAPI extends RESTDataSource {
 
     async updateCarrito(carrito){
         carrito = new Object(JSON.parse(JSON.stringify(carrito)));
-        return await this.put('/carrito',carrito);
+        return await this.put(`/carrito`,carrito);
     }
 
     async deleteCarrito(carrito,userId){

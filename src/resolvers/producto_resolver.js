@@ -1,15 +1,15 @@
 const productoResolver = {
     Query: {
-        listProducts: async (_,{dataSources})=>{
-            return await dataSources.productoAPI.listProducts();
+        listProductos: async (_,{dataSources})=>{
+            return await dataSources.productoAPI.listProductos();
         }
     },
     Mutation: {
         createProducto: async(_,{ producto },{dataSources})=>{
             return await dataSources.productoAPI.createProducto(producto);
         },
-        updateProducto: async(_, {producto,productId }, {dataSources})=>{
-            return await dataSources.productoAPI.opdateProducto(producto, productId);
+        updateProducto: async(_, { productoUpdate,productId }, {dataSources})=>{
+            return await dataSources.productoAPI.updateProducto(productoUpdate, productId);
         },
         deleteProducto: async(_,{productId}, {dataSources})=>{
             return await dataSources.productoAPI.deleteProducto(productId);
