@@ -31,14 +31,18 @@ const productoTypeDefs = gql `
         stock          :Int!
     }
 
+    input ProductoDelete{
+        id             :String!
+    }
+
     extend type Query {
         listProductos: [Producto]!
     }
 
     extend type Mutation{
-        createProducto(producto: ProductoInput!): Producto!
+        createProducto(producto      : ProductoInput!): Producto!
         updateProducto(productoUpdate: ProductoUpdate!): Producto!
-        deleteProducto(idProducto: String!): String! 
+        deleteProducto(productoDelete: ProductoDelete!): String! 
     }
 `;
 module.exports = productoTypeDefs;

@@ -2,7 +2,7 @@ const {gql}= require('apollo-server');
 
 const medioTypeDefs = gql `
     type Medio {
-        id          :String!
+        id          :Int
         userId      :String!
         type        :String!
         number      :String!
@@ -11,6 +11,8 @@ const medioTypeDefs = gql `
     }
 
     input MedioInput {
+        id          :Int
+        userId      :String!
         type        :String!
         number      :String!
         expDate     :String!
@@ -18,21 +20,33 @@ const medioTypeDefs = gql `
     }
 
     input MedioUpdate{
-        id          :String!
+        id          :Int
+        userId      :String!
         type        :String!
         number      :String!
         expDate     :String!
         cv          :String!
     }
 
+    input MedioDelete{
+        id          :Int
+        userId      :String!
+    }
+
+    type MedioDel{
+        id          :Int
+        userId      :String!
+    }
+
+
     extend type Query{
-        medioByUserId(userId: String!): [Medio]!
+        getMedio(userId: String!): [Medio]
     }
 
     extend type Mutation{
-        createMedio(Medio: CarritoInput!) : Medio!
-        updateMedio(Medio: CarritoUpdate!): Medio!
-        deleteMedio(Id: String!)          : String!
+        createMedio(medio       : MedioInput!) : Medio
+        updateMedio(medioUpdate : MedioUpdate!): Medio!
+        deleteMedio(medioDelete : MedioDelete!): MedioDel!
     }
 
 `;

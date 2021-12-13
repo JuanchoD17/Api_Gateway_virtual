@@ -1,33 +1,33 @@
 const medioResolver = {
     Query: {
-        medioByUserId: async (_, {userId}, {dataSource, userIdToken})=>{
-            userToken = await dataSource.authAPI.getUser(userIdToken)//).userId
-            if (userToken==userId)
-                return await dataSource.authAPI.getUser(userId);
+        getMedio: async (_, {userId}, {dataSources, userIdToken})=>{
+            if (userIdToken==userId){
+                return await dataSources.medioAPI.getMedio(userId);
+            }    
             else
-                return null;
-        }
+                return null
+        },
     },
     Mutation:{
-        createMedio: async(_, {medio}, {dataSource, userIdToken})=>{
-            userToken = await dataSource.authAPI.getUser(userIdToken)//).userId
-            if (medio.userId==userToken)
-                return await dataSource.productoAPI.createmedio(medio);
+        createMedio: async(_, {medio}, {dataSources, userIdToken})=>{
+            if (medio.userId==userIdToken)
+                return await dataSources.medioAPI.createMedio(medio,medio.userId);
             else 
                 return null;
         }
         ,
-        updateMedio: async(_,{medio},{dataSource, userIdToken})=>{
-            userToken = await dataSource.authAPI.getUser(userIdToken)//).userId
-            if (medio.userId==userToken)
-                return await dataSource.productoAPI.updateUser(medio)
+        updateMedio: async(_,{medioUpdate},{dataSources, userIdToken})=>{
+            if (medioUpdate.userId==userIdToken){
+                console.log(medioUpdate);
+                return await dataSources.medioAPI.updateMedio(medioUpdate,medioUpdate.userId)
+            }
             else 
                 return null;
         },
-        deleteMedio: async(_, {medio,userId}, {dataSource, userIdToken})=>{
-            userToken = await dataSource.authAPI.getUser(userIdToken)//).userId
-            if (userId==userToken)
-                return await dataSource.productoAPI.deletemedio(userId, medio);
+        deleteMedio: async(_,{medioDelete},{dataSources, userIdToken})=>{
+            if (medioDelete.userId==userIdToken){
+                return await dataSources.medioAPI.deleteMedio(medioDelete, medioDelete.userId);
+            }
             else
                 return null;
         }

@@ -9,21 +9,23 @@ class MedioAPI extends RESTDataSource{
 
     async createMedio(medio,userId){
         medio = new Object(JSON.parse(JSON.stringify(medio)));
-        return await this.post(`/create/${userId}`,medio);
+        return await this.post(`/create/${userId}/`,medio);
     }
 
-    async ListMedio(userId){
-        return await this.get(`/${userId}`);
+    async getMedio(userId){
+        return await this.get(`/${userId}/`);
     }
 
     async updateMedio(medio,userId){
         medio = new Object(JSON.parse(JSON.stringify(medio)));
-        return await this.post(`/update/${userId}`,medio);
+        return await this.put(`/update/${userId}/`,medio);
     }
 
     async deleteMedio(medio,userId){
+        console.log(medio);
         medio = new Object(JSON.parse(JSON.stringify(medio)));
-        return await this.post(`/delete/${userId}`,medio);
+        console.log(medio);
+        return await this.delete(`/delete/${userId}/`,medio);
     }
 }
 

@@ -1,22 +1,24 @@
 const usersResolver = {
     Query: {
         userDetailById: (_, { userId }, { dataSources, userIdToken }) => {
-            if (userId == userIdToken)
-                return dataSources.authAPI.getUser(userId)
-            else
-                return null
+        if (userId == userIdToken){
+            console.log(userIdToken);
+            return dataSources.authAPI.getUser(userId)
+        } 
+        else
+            return null
         },
     },
     Mutation: {
-        signUpUser: async(_, { UserInput }, { dataSources }) => {
+        signUpUser: async(_, { userInput }, { dataSources }) => {
             const authInput = {
-                username: UserInput.username,
-                password: UserInput.password,
-                name: UserInput.name,
-                last_name: UserInput.last_name,
-                email: UserInput.email,
-                adress: UserInput.adress,
-                cellphone: UserInput.cellphone
+                username: userInput.username,
+                password: userInput.password,
+                name: userInput.name,
+                last_name: userInput.last_name,
+                email: userInput.email,
+                adress: userInput.adress,
+                cellphone: userInput.cellphone
             }
             return await dataSources.authAPI.createUser(authInput);
         },

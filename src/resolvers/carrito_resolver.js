@@ -1,33 +1,30 @@
 const carritoResolver = {
     Query: {
-        carritoByUserId: async (_, {userId}, {dataSource, userIdToken})=>{
-            userToken = await dataSource.authAPI.getUser(userIdToken)//).userId
-            if (userToken==userId)
-                return await dataSource.authAPI.getUser(userId);
+        getCarrito: async (_, {userId}, {dataSources, userIdToken})=>{
+            if (userIdToken==userId)
+                return await dataSources.productoAPI.getCarrito(userId);
             else
                 return null;
         }
     },
     Mutation:{
-        createCarrito: async(_, {carrito}, {dataSource, userIdToken})=>{
-            userToken = await dataSource.authAPI.getUser(userIdToken)//).userId
-            if (carrito.userId==userToken)
-                return await dataSource.productoAPI.createCarrito(carrito);
+        createCarrito: async(_, {carrito}, {dataSources, userIdToken})=>{
+            if (carrito.userId==userIdToken)
+                return await dataSources.productoAPI.createCarrito(carrito);
             else 
                 return null;
         }
         ,
-        updateCarrito: async(_,{carrito},{dataSource, userIdToken})=>{
-            userToken = await dataSource.authAPI.getUser(userIdToken)//).userId
-            if (carrito.userId==userToken)
-                return await dataSource.productoAPI.updateUser(carrito)
+        updateCarrito: async(_, {carritoUpdate}, {dataSources, userIdToken})=>{
+            if (carritoUpdate.userId==userIdToken)
+                return await dataSources.productoAPI.updateCarrito(carritoUpdate)
             else 
                 return null;
         },
-        deleteCarrito: async(_, {carrito,userId}, {dataSource, userIdToken})=>{
-            userToken = await dataSource.authAPI.getUser(userIdToken)//).userId
-            if (userId==userToken)
-                return await dataSource.productoAPI.deleteCarrito(userId, carrito);
+        deleteCarrito: async(_, {carritoDelete}, {dataSources, userIdToken})=>{
+            if (carritoDelete.userId==userIdToken){
+                return await dataSources.productoAPI.deleteCarrito(carritoDelete.productId,carritoDelete.userId);
+            }
             else
                 return null;
         }

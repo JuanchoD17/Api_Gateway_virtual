@@ -5,14 +5,14 @@ const carritoTypeDefs = gql `
         id          :String!
         userId      :String!
         productId   :String!
-        amount      :Int!
+        amount      :String!
         price       :Float!
     }
 
     input CarritoInput {
         userId      :String!
         productId   :String!
-        amount      :Int!
+        amount      :String!
         price       :Float!
     }
 
@@ -20,19 +20,27 @@ const carritoTypeDefs = gql `
         id          :String!
         userId      :String!
         productId   :String!
-        amount      :Int!
+        amount      :String!
         price       :Float!
+    }
+    input CarritoDelete{
+        userId      :String!
+        productId   :String!
+    }
+
+    type CarritoDel{
+        userId      :String!
+        productId   :String!
     }
 
     extend type Query{
-        carritoByUserId(userId: String!): [Carrito]!
+        getCarrito(userId: String!): [Carrito]
     }
 
     extend type Mutation{
-        createCarrito(Carrito:CarritoInput!): Carrito!
-        updateCarrito(Carrito: CarritoUpdate!): Carrito!
-        deleteCarrito(productId: String!): String!
+        createCarrito(carrito      : CarritoInput!):  Carrito!
+        updateCarrito(carritoUpdate: CarritoUpdate!): Carrito!
+        deleteCarrito(carritoDelete: CarritoDelete!): CarritoDel!
     }
-
 `;
 module.exports = carritoTypeDefs;
